@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:text="${detail.qnaTitle}">
+</div>
+<div th:text="${detail.qnaContents}">
+</div>
+<div th:text="${detail.qnaType}">
+</div>
+<div>
+    <img th:src="${'/static/img/'+file.qnaOriName}">
+</div>
+</body>
+</html>

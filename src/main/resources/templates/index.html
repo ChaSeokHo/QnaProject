@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+        crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            width: 100%;
+        }
+        .contents{
+            border: 1px solid black;
+            margin: auto;
+            padding: 20px;
+            width: 30%;
+            height: 500px;
+        }
+        .buttonbox{
+            border: 1px solid black;
+            margin: auto;
+            text-align: center;
+            width: 30%;
+            height: 50px;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+            background-color: aqua;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="contents">
+        <tr th:each="qna : ${qna}">
+            <a th:href="@{/qna/detail(qnaSeq = ${qna.qnaSeq})}">
+                <td th:text="${qna.qnaTitle}">
+            </a>
+            </td>
+        </tr>
+    </div>
+    <div class="buttonbox">
+        <a href="/qna/write" style="font-size: 20px;">작성하기</a>
+    </div>
+</div>
+</body>
+</html>

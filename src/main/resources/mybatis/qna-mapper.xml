@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.qna.mapper.QnaMapper">
+    <insert id="insert">
+        insert into qna_board values(qna_seq.nextval,#{qnaWriter},#{qnaTitle},#{qnaContents},sysdate,#{qnaType})
+
+        <selectKey order="AFTER" keyProperty="qnaSeq" resultType="int">
+            select qna_seq.currval from dual
+        </selectKey>
+
+    </insert>
+
+    <insert id="insertFile">
+        insert into qna_files values(qna_files_seq.nextval,#{qnaOriName},#{qnaSysName},#{qnaSeq},#{qnaCatagory})
+    </insert>
+
+    <select id="select" resultType="com.spring.qna.dto.QnaDTO">
+        select
+        *
+        from
+        qna_board
+        order by
+        qna_seq desc
+    </select>
+
+    <select id="selectDetail" resultType="com.spring.qna.dto.QnaDTO">
+    select * from qna_board where qna_seq = #{qnaSeq}
+    </select>
+
+    <select id="selectFile" resultType="com.spring.qna.dto.QnaFileDTO">
+        select * from qna_files where qna_seq = #{qnaSeq}
+    </select>
+</mapper>
