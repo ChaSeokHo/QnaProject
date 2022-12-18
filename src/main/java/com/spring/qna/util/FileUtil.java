@@ -53,25 +53,19 @@ public class FileUtil {
     }
 
     public void saves(HttpSession session, String path, MultipartFile[] files) throws IOException {
-
         String realPath = session.getServletContext().getRealPath(path);
-
         File filePath = new File(realPath);
-
         if (!filePath.exists()) {
             filePath.mkdir();
         }
-
         for (MultipartFile file : files) {
             if (file.getOriginalFilename() == null) {
                 continue; // file이 빈 파일이라면 패스
             }
             // 파일 이름 설정
             String sysName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-
             this.oriNameList.add(file.getOriginalFilename());
             this.sysNameList.add(sysName);
-
             // 파일 복사
             file.transferTo(new File(filePath + "/" + sysName));
         }
