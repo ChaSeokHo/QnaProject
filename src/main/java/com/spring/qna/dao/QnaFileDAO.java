@@ -17,4 +17,8 @@ public class QnaFileDAO {
     public QnaFileDTO selectFile(QnaFileDTO Fdto) throws Exception{
         return qnaMapper.selectFile(Fdto);
     }
+
+    public int deleteFile(int qnaSeq) throws Exception{
+        return qnaMapper.deleteFile(qnaSeq);
+    }
 }

@@ -8,14 +8,26 @@
     <title>Title</title>
 </head>
 <body>
-<div th:text="${detail.qnaTitle}">
-</div>
-<div th:text="${detail.qnaContents}">
-</div>
-<div th:text="${detail.qnaType}">
-</div>
-<div>
-    <img th:src="${'/static/img/'+file.qnaOriName}">
-</div>
+<form action="/qna/delete" method="post" enctype="multipart/form-data">
+    <div th:text="${detail.qnaTitle}" class="qnaTitle" id="qnaTitle" name="qnaTitle"> </div>
+    <div th:text="${detail.qnaContents}" class="qnaContents" id="qnaContents" name="qnaContents"/> </div>
+    <div th:text="${detail.qnaType}" class="qnaType" id="qnaType" name="qnaType"/> </div>
+    <div> <img th:src="${'/static/img/'+file.qnaOriName}"> </div>
+</form>
+<button type="submit" id="btnDelete">삭제하기</button>
 </body>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    //삭제하기 버튼 누르면 생기는 이벤트
+    let btnDelete = $("#btnDelete");
+    let qnaSeq = /*[[ ${file.qnaSeq} ]]*/;
+    console.log(qnaSeq);
+    btnDelete.on("click", function() {
+        if (confirm("정말 게시물을 삭제 하시겠습니까?")) {
+            location.href = "/qna/delete?qnaSeq="+qnaSeq
+            alert("삭제 완료");
+        }
+    })
+    /*]]>*/
+</script>
 </html>

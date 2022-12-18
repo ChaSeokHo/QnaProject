@@ -14,7 +14,6 @@ public class QnaService {
     @Autowired
     private QnaDAO dao;
 
-
     public int insert(QnaDTO dto) throws Exception {
         return dao.insert(dto);
     }
@@ -24,5 +23,8 @@ public class QnaService {
 
     public QnaDTO selectDetail(QnaDTO dto) throws  Exception{
         return dao.selectDetail(dto);
+    }
+    public int delete(int qnaSeq) throws Exception {
+        return dao.delete(qnaSeq);
     }
 }

@@ -32,4 +32,13 @@
     <select id="selectFile" resultType="com.spring.qna.dto.QnaFileDTO">
         select * from qna_files where qna_seq = #{qnaSeq}
     </select>
+
+    <delete id="delete">
+        delete from qna_board where qna_Seq = #{qnaSeq}
+    </delete>
+
+    <delete id="deleteFile">
+        delete from qna_files where qna_Seq = #{qnaSeq}
+    </delete>
+
 </mapper>
