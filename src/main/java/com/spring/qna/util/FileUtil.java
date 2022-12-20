@@ -1,6 +1,5 @@
 package com.spring.qna.util;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -53,15 +52,11 @@ public class FileUtil {
     }
 
     public void saves(HttpSession session, String path, MultipartFile[] files) throws IOException {
-
         String realPath = session.getServletContext().getRealPath(path);
-
         File filePath = new File(realPath);
-
         if (!filePath.exists()) {
             filePath.mkdir();
         }
-
         for (MultipartFile file : files) {
             if (file.getOriginalFilename() == null) {
                 continue; // file이 빈 파일이라면 패스
