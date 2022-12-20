@@ -17,4 +17,8 @@ public interface QnaMapper {
      QnaDTO selectDetail(QnaDTO dto);
 
      QnaFileDTO selectFile(QnaFileDTO Fdto);
+
+     int delete(int qnaSeq);
+
+     int deleteFile(int qnaSeq);
 }

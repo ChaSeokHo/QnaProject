@@ -23,4 +23,7 @@ public class QnaDAO {
     public QnaDTO selectDetail(QnaDTO dto) throws Exception{
         return qnaMapper.selectDetail(dto);
     }
+    public int delete(int qnaSeq) throws Exception{
+        return qnaMapper.delete(qnaSeq);
+    }
 }

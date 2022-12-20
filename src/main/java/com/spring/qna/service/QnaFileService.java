@@ -20,4 +20,7 @@ public class QnaFileService {
         FileUtil util = new FileUtil();
         return Fdao.selectFile(Fdto);
     }
+    public int deleteFile(int qnaSeq) throws Exception{
+        return Fdao.deleteFile(qnaSeq);
+    }
 }

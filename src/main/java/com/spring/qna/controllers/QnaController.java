@@ -4,14 +4,17 @@ import com.spring.qna.dto.QnaDTO;
 import com.spring.qna.dto.QnaFileDTO;
 import com.spring.qna.service.QnaFileService;
 import com.spring.qna.service.QnaService;
+import com.spring.qna.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,5 +67,12 @@ public class QnaController {
         model.addAttribute("file",dto1);
         model.addAttribute("detail",qdto);
         return "detail";
+    }
+
+    @RequestMapping("delete")
+    public String delete(int qnaSeq) throws Exception{
+        service.delete(qnaSeq);
+        Fservice.deleteFile(qnaSeq);
+        return "index";
     }
 }

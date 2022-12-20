@@ -3,6 +3,7 @@ package com.spring.qna.util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -63,10 +64,8 @@ public class FileUtil {
             }
             // 파일 이름 설정
             String sysName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-
             this.oriNameList.add(file.getOriginalFilename());
             this.sysNameList.add(sysName);
-
             // 파일 복사
             file.transferTo(new File(filePath + "/" + sysName));
         }
