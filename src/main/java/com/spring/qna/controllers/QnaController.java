@@ -4,20 +4,18 @@ import com.spring.qna.dto.QnaDTO;
 import com.spring.qna.dto.QnaFileDTO;
 import com.spring.qna.service.QnaFileService;
 import com.spring.qna.service.QnaService;
-import com.spring.qna.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/qna/")
@@ -36,8 +34,7 @@ public class QnaController {
     @Transactional
     @RequestMapping("insert")
     public String insert(@RequestParam MultipartFile[] uploadfile , Model model , QnaDTO dto, QnaFileDTO Fdto) throws Exception {
-
-        service.insert(dto);
+    service.insert(dto);
 
     List<QnaFileDTO> list = new ArrayList<>();
     for (MultipartFile file : uploadfile) {
@@ -45,13 +42,12 @@ public class QnaController {
             Fdto = new QnaFileDTO(
                     0,
                     file.getOriginalFilename(),
-                    file.getName(),
+                    UUID.randomUUID().toString() + file.getOriginalFilename(),
                     dto.getQnaSeq(),
-                    file.getContentType()
-            );
+                    file.getContentType());
             list.add(Fdto);
 
-            File newFileName = new File(Fdto.getQnaOriName());
+            File newFileName = new File(Fdto.getQnaSysName());
             file.transferTo(newFileName);
         }
     }

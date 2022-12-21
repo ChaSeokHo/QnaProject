@@ -2,7 +2,7 @@ package com.spring.qna.service;
 
 import com.spring.qna.dao.QnaFileDAO;
 import com.spring.qna.dto.QnaFileDTO;
-import com.spring.qna.util.FileUtil;
+import com.spring.qna.util.FileUtil1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class QnaFileService {
     }
 
     public QnaFileDTO selectFile(QnaFileDTO Fdto) throws Exception{
-        FileUtil util = new FileUtil();
+        FileUtil1 util = new FileUtil1();
         return Fdao.selectFile(Fdto);
     }
     public int deleteFile(int qnaSeq) throws Exception{
