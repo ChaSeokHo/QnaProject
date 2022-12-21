@@ -54,6 +54,7 @@ public class FileUtil1 {
     public void saves(HttpSession session, String path, MultipartFile[] files) throws IOException {
         String realPath = session.getServletContext().getRealPath(path);
         File filePath = new File(realPath);
+        filePath.mkdir();
         if (!filePath.exists()) {
             filePath.mkdir();
         }

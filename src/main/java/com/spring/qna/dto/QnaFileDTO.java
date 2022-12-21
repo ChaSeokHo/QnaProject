@@ -14,6 +14,5 @@ public class QnaFileDTO {
     private String qnaOriName;
     private String qnaSysName;
     private int qnaSeq;
-    private String qnaCatagory;
 
 }

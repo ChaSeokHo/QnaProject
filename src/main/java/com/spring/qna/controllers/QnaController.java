@@ -4,7 +4,10 @@ import com.spring.qna.dto.QnaDTO;
 import com.spring.qna.dto.QnaFileDTO;
 import com.spring.qna.service.QnaFileService;
 import com.spring.qna.service.QnaService;
+import com.spring.qna.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -31,26 +34,26 @@ public class QnaController {
     public String write() {
         return "qnaWrite";
     }
+
+    @Value("${part4.upload.path}")
+    String realPath;
     @Transactional
     @RequestMapping("insert")
-    public String insert(@RequestParam MultipartFile[] uploadfile , Model model , QnaDTO dto, QnaFileDTO Fdto) throws Exception {
-    service.insert(dto);
-
-    List<QnaFileDTO> list = new ArrayList<>();
-    for (MultipartFile file : uploadfile) {
-        if (!file.isEmpty()) {
-            Fdto = new QnaFileDTO(
-                    0,
-                    file.getOriginalFilename(),
-                    UUID.randomUUID().toString() + file.getOriginalFilename(),
-                    dto.getQnaSeq(),
-                    file.getContentType());
-            list.add(Fdto);
-
-            File newFileName = new File(Fdto.getQnaSysName());
-            file.transferTo(newFileName);
+    public String insert(@RequestParam MultipartFile[] uploadfile , Model model , QnaDTO dto, QnaFileDTO Fdto, FileUtil util) throws Exception {
+        service.insert(dto);
+        List<QnaFileDTO> list = new ArrayList<>();
+        for (MultipartFile file : uploadfile) {
+            if (!file.isEmpty()) {
+                Fdto = new QnaFileDTO(
+                        0,
+                        file.getOriginalFilename(),
+                        UUID.randomUUID().toString() + file.getOriginalFilename(),
+                        dto.getQnaSeq());
+                list.add(Fdto);
+                util.save(uploadfile,realPath);
+            }
         }
-    }
+        System.out.println(Fdto.getQnaSysName());
         model.addAttribute("files", list);
         Fservice.insertFile(Fdto);
         return "redirect:/";

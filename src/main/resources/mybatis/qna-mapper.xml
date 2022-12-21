@@ -13,7 +13,7 @@
     </insert>
 
     <insert id="insertFile">
-        insert into qna_files values(qna_files_seq.nextval,#{qnaOriName},#{qnaSysName},#{qnaSeq},#{qnaCatagory})
+        insert into qna_files values(qna_files_seq.nextval,#{qnaOriName},#{qnaSysName},#{qnaSeq})
     </insert>
 
     <select id="select" resultType="com.spring.qna.dto.QnaDTO">
