@@ -12,7 +12,9 @@
     <div th:text="${detail.qnaTitle}" class="qnaTitle" id="qnaTitle" name="qnaTitle"> </div>
     <div th:text="${detail.qnaContents}" class="qnaContents" id="qnaContents" name="qnaContents"/> </div>
     <div th:text="${detail.qnaType}" class="qnaType" id="qnaType" name="qnaType"/> </div>
-    <div> <img th:src="${'/qnaImg/'+file.qnaSysName}"> </div>
+    <div> <img th:src="${'/qnaImg/'+file.qnaSysName}">
+        <a href="/qna/download" th:href="${'download?sysName='+file.qnaSysName+'&oriName='+file.qnaOriName}">[download]</a>
+    </div>
 </form>
 <button type="submit" id="btnDelete">삭제하기</button>
 </body>
