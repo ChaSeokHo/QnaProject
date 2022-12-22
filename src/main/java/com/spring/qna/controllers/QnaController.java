@@ -35,28 +35,26 @@ public class QnaController {
         return "qnaWrite";
     }
 
-    @Value("${qna.upload.path}")
+    @Value("${qna.save.path}")
     String qnaPath;
 
     @Transactional
     @RequestMapping("insert")
-    public String insert(@RequestParam MultipartFile[] uploadfile , Model model , QnaDTO dto, QnaFileDTO Fdto, FileUtil util,String sysName) throws Exception {
+    public String insert(@RequestParam MultipartFile[] uploadfile , Model model , QnaDTO dto, QnaFileDTO Fdto, FileUtil util) throws Exception {
         service.insert(dto);
         List<QnaFileDTO> list = new ArrayList<>();
         for (MultipartFile file : uploadfile) {
             if (!file.isEmpty()) {
-                sysName = UUID.randomUUID().toString() + file.getOriginalFilename();
+                String sysName = UUID.randomUUID().toString() + file.getOriginalFilename();
                 Fdto = new QnaFileDTO(
                         0,
                         file.getOriginalFilename(),
                         sysName,
                         dto.getQnaSeq());
                 list.add(Fdto);
-
                 util.save(uploadfile,qnaPath,sysName);
             }
         }
-        System.out.println(Fdto.getQnaSysName());
         model.addAttribute("files", list);
         Fservice.insertFile(Fdto);
         return "redirect:/";
@@ -73,10 +71,8 @@ public class QnaController {
 
     @RequestMapping("delete")
     public String delete(int qnaSeq, FileUtil util,String qnaSysName) throws Exception{
-        System.out.println(qnaSysName);
         service.delete(qnaSeq);
         Fservice.deleteFile(qnaSeq);
-
         util.delete(qnaPath,qnaSysName);
         return "index";
     }

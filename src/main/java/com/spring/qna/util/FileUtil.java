@@ -21,10 +21,9 @@ public class FileUtil {
     List<String> sysNameList = new ArrayList<>();
     List<String> oriNameList = new ArrayList<>();
     String oriName;
-
     String sysName;
 
-    public void save(@RequestParam MultipartFile[] uploadfile, String realPath,String sysName) throws Exception {
+    public void save(@RequestParam MultipartFile[] uploadfile, String realPath, String sysName) throws Exception {
         File fileSavePath = new File(realPath);
         for (MultipartFile file : uploadfile) {
             if (!file.isEmpty()) {
@@ -36,10 +35,8 @@ public class FileUtil {
             }
         }
     }
-    public void delete(@RequestParam String realPath , String  sysName) {
+    public void delete(@RequestParam String realPath , String sysName) {
         String fileSavePath = realPath;
-        System.out.println(" realName : " + realPath);
-        System.out.println(" sysName : " + sysName);
         File file = new File(fileSavePath + "/" + sysName);
         if(file.exists()){
             file.delete();
