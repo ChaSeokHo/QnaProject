@@ -12,7 +12,7 @@
     <div th:text="${detail.qnaTitle}" class="qnaTitle" id="qnaTitle" name="qnaTitle"> </div>
     <div th:text="${detail.qnaContents}" class="qnaContents" id="qnaContents" name="qnaContents"/> </div>
     <div th:text="${detail.qnaType}" class="qnaType" id="qnaType" name="qnaType"/> </div>
-    <div> <img th:src="${'/Qimg/'+file.qnaSysName}"> </div>
+    <div> <img th:src="${'/qnaImg/'+file.qnaSysName}"> </div>
 </form>
 <button type="submit" id="btnDelete">삭제하기</button>
 </body>
@@ -21,10 +21,10 @@
     //삭제하기 버튼 누르면 생기는 이벤트
     let btnDelete = $("#btnDelete");
     let qnaSeq = /*[[ ${file.qnaSeq} ]]*/;
-    console.log(qnaSeq);
+    let qnaSysName =/*[[ ${file.qnaSysName} ]]*/;
     btnDelete.on("click", function() {
         if (confirm("정말 게시물을 삭제 하시겠습니까?")) {
-            location.href = "/qna/delete?qnaSeq="+qnaSeq
+            location.href = "/qna/delete?qnaSeq="+ qnaSeq + "&qnaSysName=" + qnaSysName
             alert("삭제 완료");
         }
     })

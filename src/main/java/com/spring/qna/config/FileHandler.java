@@ -7,11 +7,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class FileHandler implements WebMvcConfigurer{
-    @Value("${part1.upload.path}")
+    @Value("${qna.root.path}")
     String realPath;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/Qimg/**").addResourceLocations(realPath);
+        registry.addResourceHandler("/qnaImg/**").addResourceLocations(realPath);
     }
 }

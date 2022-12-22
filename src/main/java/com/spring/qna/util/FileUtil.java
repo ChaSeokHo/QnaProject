@@ -24,12 +24,10 @@ public class FileUtil {
 
     String sysName;
 
-    public String save(@RequestParam MultipartFile[] uploadfile, String realPath) throws Exception {
-
+    public void save(@RequestParam MultipartFile[] uploadfile, String realPath,String sysName) throws Exception {
         File fileSavePath = new File(realPath);
         for (MultipartFile file : uploadfile) {
             if (!file.isEmpty()) {
-                String sysName = UUID.randomUUID() + "_" + file.getOriginalFilename();
                 this.oriNameList.add(file.getOriginalFilename());
                 this.sysNameList.add(sysName);
                 // 파일 복사
@@ -37,6 +35,14 @@ public class FileUtil {
                 file.transferTo(new File(fileSavePath + "/" + newFileName));
             }
         }
-        return realPath;
+    }
+    public void delete(@RequestParam String realPath , String  sysName) {
+        String fileSavePath = realPath;
+        System.out.println(" realName : " + realPath);
+        System.out.println(" sysName : " + sysName);
+        File file = new File(fileSavePath + "/" + sysName);
+        if(file.exists()){
+            file.delete();
+        }
     }
 }
