@@ -76,7 +76,7 @@ public class QnaController {
         service.delete(qnaSeq);
         Fservice.deleteFile(qnaSeq);
         util.delete(qnaPath,qnaSysName);
-        return "index";
+        return "redirect:/";
     }
     @RequestMapping("download")
     public ResponseEntity<Resource> download(FileUtil util, String sysName, String oriName) throws Exception {
