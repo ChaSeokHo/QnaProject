@@ -1,7 +1,9 @@
 package com.spring.qna.controllers;
 
+import com.spring.qna.dto.QnaCommentDTO;
 import com.spring.qna.dto.QnaDTO;
 import com.spring.qna.dto.QnaFileDTO;
+import com.spring.qna.service.QnaCommentService;
 import com.spring.qna.service.QnaFileService;
 import com.spring.qna.service.QnaService;
 import com.spring.qna.util.FileUtil;
@@ -32,6 +34,8 @@ public class QnaController {
     @Autowired
     private QnaFileService Fservice;
 
+    @Autowired
+    private QnaCommentService qnaCommentService;
     @RequestMapping("write")
     public String write() {
         return "qnaWrite";
@@ -63,11 +67,13 @@ public class QnaController {
     }
 
     @RequestMapping("detail")
-    public String selectDetail(QnaDTO dto, Model model , QnaFileDTO fdto) throws Exception {
+    public String selectDetail(QnaDTO dto, Model model , QnaFileDTO fdto, QnaCommentDTO Cdto) throws Exception {
         QnaDTO qdto = service.selectDetail(dto);
         QnaFileDTO dto1 = Fservice.selectFile(fdto);
+        List<QnaCommentDTO> qnaCommentDto = qnaCommentService.selectComment(Cdto);
         model.addAttribute("file",dto1);
         model.addAttribute("detail",qdto);
+        model.addAttribute("comment",qnaCommentDto);
         return "detail";
     }
 
@@ -78,6 +84,13 @@ public class QnaController {
         util.delete(qnaPath,qnaSysName);
         return "redirect:/";
     }
+
+    @RequestMapping("deleteComment")
+    public String delete(int qnaSeq,int qnaCommentSeq) throws Exception{
+        qnaCommentService.deleteComment(qnaSeq,qnaCommentSeq);
+        return "redirect:/";
+    }
+
     @RequestMapping("download")
     public ResponseEntity<Resource> download(FileUtil util, String sysName, String oriName) throws Exception {
         return util.download(qnaPath,sysName,oriName);

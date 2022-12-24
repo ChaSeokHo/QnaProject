@@ -26,7 +26,7 @@
     </select>
 
     <select id="selectDetail" resultType="com.spring.qna.dto.QnaDTO">
-    select * from qna_board where qna_seq = #{qnaSeq}
+        select * from qna_board where qna_seq = #{qnaSeq}
     </select>
 
     <select id="selectFile" resultType="com.spring.qna.dto.QnaFileDTO">
@@ -34,11 +34,18 @@
     </select>
 
     <delete id="delete">
-        delete from qna_board where qna_Seq = #{qnaSeq}
+        delete from qna_board where qna_seq = #{qnaSeq}
     </delete>
 
     <delete id="deleteFile">
-        delete from qna_files where qna_Seq = #{qnaSeq}
+        delete from qna_files where qna_seq = #{qnaSeq}
     </delete>
 
+    <select id="selectComment" resultType="com.spring.qna.dto.QnaCommentDTO">
+        select * from qna_comment where qna_seq = #{qnaSeq}
+    </select>
+
+    <delete id="deleteComment">
+        delete from qna_comment where qna_seq = #{qnaSeq} and qna_comment_seq = #{qna_comment_seq}
+    </delete>
 </mapper>

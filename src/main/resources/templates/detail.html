@@ -16,20 +16,39 @@
         <a href="/qna/download" th:href="${'download?sysName='+file.qnaSysName+'&oriName='+file.qnaOriName}">[download]</a>
     </div>
 </form>
-<button type="button" id="bthUpdate">수정하기</button>
+
+<hr>
+
+<form action="/qna/deleteComment" method="post" id="comment">
+<div th:each="comment : ${comment}">
+    <div th:text="${comment.qnaCommentContents}">
+    </div>
+</div>
+</form>
+
+<button type="button" id="btnCmtDelete">X</button>
 <button type="button" id="btnDelete">삭제하기</button>
 </body>
 <script th:inline="javascript">
     /*<![CDATA[*/
     //삭제하기 버튼 누르면 생기는 이벤트
     let btnDelete = $("#btnDelete");
-    let deleteSubmit = $("#detail");
+    let btnCmtDelete = $("#btnCmtDelete");
     let qnaSeq = /*[[ ${file.qnaSeq} ]]*/;
     let qnaSysName =/*[[ ${file.qnaSysName} ]]*/;
+    let qnaCommentSeq =/*[[ ${comment[0].qnaCommentSeq} ]]*/;
+
+    console.log(qnaSeq);
+    console.log(qnaCommentSeq);
     btnDelete.on("click", function() {
         if (confirm("정말 게시물을 삭제 하시겠습니까?")) {
             location.href = "/qna/delete?qnaSeq="+ qnaSeq + "&qnaSysName=" + qnaSysName
             alert("삭제 완료");
+        }
+    })
+    btnCmtDelete.on("click", function (){
+        if (confirm("댓글을 삭제 하시겠습니까?")){
+            location.href ="/qna/deleteComment?qnaSeq="+ qnaSeq +"&qnaCommentSeq=" + qnaCommentSeq
         }
     })
     /*]]>*/

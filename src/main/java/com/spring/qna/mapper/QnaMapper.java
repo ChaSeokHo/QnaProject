@@ -1,5 +1,6 @@
 package com.spring.qna.mapper;
 
+import com.spring.qna.dto.QnaCommentDTO;
 import com.spring.qna.dto.QnaDTO;
 import com.spring.qna.dto.QnaFileDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,6 +15,8 @@ public interface QnaMapper {
 
      List<QnaDTO> select();
 
+     List<QnaCommentDTO> selectComment(QnaCommentDTO cdto);
+
      QnaDTO selectDetail(QnaDTO dto);
 
      QnaFileDTO selectFile(QnaFileDTO Fdto);
@@ -21,4 +24,6 @@ public interface QnaMapper {
      int delete(int qnaSeq);
 
      int deleteFile(int qnaSeq);
+
+     int deleteComment(int qnaSeq,int qnaCommentSeq);
 }
