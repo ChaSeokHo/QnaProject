@@ -1,21 +1,21 @@
 package com.spring.qna.dao;
 
-import com.spring.qna.dto.QnaFileDto;
+import com.spring.qna.dto.QnaFileDTO;
 import com.spring.qna.mapper.QnaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class QnaFileDao {
+public class QnaFileDAO {
     @Autowired
     private QnaMapper qnaMapper;
 
-    public int insertFile(QnaFileDto Fdto) throws Exception {
-        return qnaMapper.insertFile(Fdto);
+    public int insertFile(QnaFileDTO qnaFileDto) throws Exception {
+        return qnaMapper.insertFile(qnaFileDto);
     }
 
-    public QnaFileDto selectFile(QnaFileDto Fdto) throws Exception{
-        return qnaMapper.selectFile(Fdto);
+    public QnaFileDTO selectFile(QnaFileDTO qnaFileDto) throws Exception{
+        return qnaMapper.selectFile(qnaFileDto);
     }
 
     public int deleteFile(int qnaSeq) throws Exception{

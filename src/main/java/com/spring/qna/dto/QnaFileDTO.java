@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class QnaFileDto {
+public class QnaFileDTO {
     private int qnaFilesSeq;
     private String qnaOriName;
     private String qnaSysName;

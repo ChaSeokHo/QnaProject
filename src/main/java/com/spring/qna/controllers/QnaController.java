@@ -1,8 +1,8 @@
 package com.spring.qna.controllers;
 
-import com.spring.qna.dto.QnaCommentDto;
-import com.spring.qna.dto.QnaDto;
-import com.spring.qna.dto.QnaFileDto;
+import com.spring.qna.dto.QnaCommentDTO;
+import com.spring.qna.dto.QnaDTO;
+import com.spring.qna.dto.QnaFileDTO;
 import com.spring.qna.service.QnaCommentService;
 import com.spring.qna.service.QnaFileService;
 import com.spring.qna.service.QnaService;
@@ -44,13 +44,13 @@ public class QnaController {
 
     @Transactional
     @RequestMapping("insert")
-    public String insert(@RequestParam MultipartFile[] uploadfile , Model model , QnaDto qnaDto, QnaFileDto qnaFileDto, FileUtil util) throws Exception {
+    public String insert(@RequestParam MultipartFile[] uploadfile , Model model , QnaDTO qnaDto, QnaFileDTO qnaFileDto, FileUtil util) throws Exception {
         qnaService.insert(qnaDto);
-        List<QnaFileDto> list = new ArrayList<>();
+        List<QnaFileDTO> list = new ArrayList<>();
         for (MultipartFile file : uploadfile) {
             if (!file.isEmpty()) {
                 String sysName = UUID.randomUUID().toString() + file.getOriginalFilename();
-                qnaFileDto = new QnaFileDto(
+                qnaFileDto = new QnaFileDTO(
                         0,
                         file.getOriginalFilename(),
                         sysName,
@@ -65,10 +65,10 @@ public class QnaController {
     }
 
     @RequestMapping("detail")
-    public String selectDetail(QnaDto qnaDto, Model model , QnaFileDto qnaFileDto, QnaCommentDto qnaCommentDto) throws Exception {
-        QnaDto qnaDto1 = qnaService.selectDetail(qnaDto);
-        QnaFileDto qnaFileDto1 = qnaFileService.selectFile(qnaFileDto);
-        List<QnaCommentDto> qnaCommentDto1 = qnaCommentService.selectComment(qnaCommentDto);
+    public String selectDetail(QnaDTO qnaDto, Model model , QnaFileDTO qnaFileDto, QnaCommentDTO qnaCommentDto) throws Exception {
+        QnaDTO qnaDto1 = qnaService.selectDetail(qnaDto);
+        QnaFileDTO qnaFileDto1 = qnaFileService.selectFile(qnaFileDto);
+        List<QnaCommentDTO> qnaCommentDto1 = qnaCommentService.selectComment(qnaCommentDto);
         model.addAttribute("detail",qnaDto1);
         model.addAttribute("file",qnaFileDto1);
         model.addAttribute("comment",qnaCommentDto1);
