@@ -1,6 +1,6 @@
 package com.spring.qna.controllers;
 
-import com.spring.qna.dto.QnaDTO;
+import com.spring.qna.dto.QnaDto;
 import com.spring.qna.service.QnaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,11 +14,11 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    private QnaService service;
+    private QnaService qnaService;
     @RequestMapping("/")
         public String select(Model model) throws Exception {
-        List<QnaDTO> dto = service.select();
-        model.addAttribute("qna", dto);
+        List<QnaDto> qnaDto = qnaService.select();
+        model.addAttribute("qna", qnaDto);
         return "index";
     }
 }

@@ -16,7 +16,7 @@
         insert into qna_files values(qna_files_seq.nextval,#{qnaOriName},#{qnaSysName},#{qnaSeq})
     </insert>
 
-    <select id="select" resultType="com.spring.qna.dto.QnaDTO">
+    <select id="select" resultType="com.spring.qna.dto.QnaDto">
         select
         *
         from
@@ -25,11 +25,11 @@
         qna_seq desc
     </select>
 
-    <select id="selectDetail" resultType="com.spring.qna.dto.QnaDTO">
+    <select id="selectDetail" resultType="com.spring.qna.dto.QnaDto">
         select * from qna_board where qna_seq = #{qnaSeq}
     </select>
 
-    <select id="selectFile" resultType="com.spring.qna.dto.QnaFileDTO">
+    <select id="selectFile" resultType="com.spring.qna.dto.QnaFileDto">
         select * from qna_files where qna_seq = #{qnaSeq}
     </select>
 
@@ -41,7 +41,7 @@
         delete from qna_files where qna_seq = #{qnaSeq}
     </delete>
 
-    <select id="selectComment" resultType="com.spring.qna.dto.QnaCommentDTO">
+    <select id="selectComment" resultType="com.spring.qna.dto.QnaCommentDto">
         select * from qna_comment where qna_seq = #{qnaSeq}
     </select>
 

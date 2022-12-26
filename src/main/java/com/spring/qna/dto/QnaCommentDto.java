@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QnaCommentDTO {
+public class QnaCommentDto {
     private int qnaCommentSeq;
     private int qnaCommentWriter;
     private String qnaCommentContents;

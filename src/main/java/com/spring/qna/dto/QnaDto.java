@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class QnaDTO {
+public class QnaDto {
 private int qnaSeq;
 private int qnaWriter;
 private String qnaTitle;

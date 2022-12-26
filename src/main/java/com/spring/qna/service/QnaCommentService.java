@@ -1,7 +1,7 @@
 package com.spring.qna.service;
 
-import com.spring.qna.dao.QnaCommentDAO;
-import com.spring.qna.dto.QnaCommentDTO;
+import com.spring.qna.dao.QnaCommentDao;
+import com.spring.qna.dto.QnaCommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import java.util.List;
 public class QnaCommentService {
 
     @Autowired
-    private QnaCommentDAO qnaCommentDAO;
-    public List<QnaCommentDTO> selectComment(QnaCommentDTO Cdto) throws  Exception{
-        return qnaCommentDAO.selectComment(Cdto);
+    private QnaCommentDao qnaCommentDAO;
+    public List<QnaCommentDto> selectComment(QnaCommentDto qnaCommentDto) throws  Exception{
+        return qnaCommentDAO.selectComment(qnaCommentDto);
     }
 
     public int deleteComment(int qnaSeq,int qnaCommentSeq) throws Exception{

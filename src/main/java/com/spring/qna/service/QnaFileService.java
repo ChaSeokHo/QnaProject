@@ -1,7 +1,7 @@
 package com.spring.qna.service;
 
-import com.spring.qna.dao.QnaFileDAO;
-import com.spring.qna.dto.QnaFileDTO;
+import com.spring.qna.dao.QnaFileDao;
+import com.spring.qna.dto.QnaFileDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 public class QnaFileService {
 
     @Autowired
-    private QnaFileDAO Fdao;
+    private QnaFileDao qnaFileDao;
 
-    public int insertFile(QnaFileDTO Fdto) throws Exception {
-        return Fdao.insertFile(Fdto);
+    public int insertFile(QnaFileDto qnaFileDto) throws Exception {
+        return qnaFileDao.insertFile(qnaFileDto);
     }
 
-    public QnaFileDTO selectFile(QnaFileDTO Fdto) throws Exception{
-        return Fdao.selectFile(Fdto);
+    public QnaFileDto selectFile(QnaFileDto qnaFileDto) throws Exception{
+        return qnaFileDao.selectFile(qnaFileDto);
     }
     public int deleteFile(int qnaSeq) throws Exception{
-        return Fdao.deleteFile(qnaSeq);
+        return qnaFileDao.deleteFile(qnaSeq);
     }
 }
